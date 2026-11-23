@@ -1,0 +1,17 @@
+{
+  "name": "Canopy Segments: Airflow and Jupyter",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "hostRequirements": { "cpus": 2, "memory": "8gb" },
+  "containerEnv": {
+    "AIRFLOW_HOME": "/workspaces/${localWorkspaceFolderBasename}/.airflow",
+    "AIRFLOW__CORE__DAGS_FOLDER": "/workspaces/${localWorkspaceFolderBasename}/dags",
+    "AIRFLOW__CORE__LOAD_EXAMPLES": "False",
+    "AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_ALL_ADMINS": "True"
+  },
+  "customizations": {
+    "vscode": { "extensions": ["ms-python.python", "ms-toolsai.jupyter"] }
+  },
+  "postCreateCommand": "bash .devcontainer/install_airflow.sh",
+  "forwardPorts": [8080],
+  "portsAttributes": { "8080": { "label": "Airflow", "onAutoForward": "openBrowser" } }
+}
